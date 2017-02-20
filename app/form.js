@@ -1,37 +1,27 @@
 var https = require('https');
 var utils = require('../utils.js');
 
-module.exports = function(req,res) {
+module.exports = function(req, res) {
 
-  utils.parseBody(req,function(err,body){
+    utils.parseBody(req, function(err, body) {
+        var fixedpass = 123654;
+        if (body.usrname === "rana" && body.usrpass == fixedpass) {
 
-    var str = JSON.stringify(body);
-    var postData = JSON.stringify({usrname:body.usrname, usrpass:body.usrpass});
-    console.log("postData"+postData);
-    var dataLength = Buffer.byteLength(postData);
+            res.writeHeader(302, {
+                'location': 'profile'
+            });
+            res.end();
 
-    var options = {
-      hostname: 'api.gitter.im',
-      port: 443,
-      path: '/v1/rooms/588f114dd73408ce4f46e903/chatMessages',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Content-Length': dataLength,
-        'Authorization': 'Bearer ' + process.env.TOKEN
-      }
-    };
+        } else {
+            //console.log("ERRORRRRRR");
 
-    var request = https.request(options, function(resGitter){
-      res.end('Thank you! Your mess was sent to Gitter');
+
+        }
+
+
+
+
+
+
     });
-
-    request.on('error', function(err) {
-      console.log('err',err);
-    });
-
-    request.write(postData);
-    request.end();
-  });
-};
+}
