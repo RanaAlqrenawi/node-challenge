@@ -3,11 +3,49 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <style>
+input[type=text], select {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=password], select {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 15px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 40%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+</style>
   </head>
   <body>
     <form action="/form" method="POST">
-      <input type="text" name="usrname" placeholder="User Name"></input>
-      <input type="password" name="usrpass" placeholder="Password"></input>
+    <strong>User Name:</strong>
+      <input type="text" name="usrname" placeholder="User Name"></input><br><br>
+      <strong>Password:</strong>
+      <input type="password" name="usrpass" placeholder="Password"></input><br><br>
       <input type="submit" name="login" value="Log in">
     </form>
   </body>
