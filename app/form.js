@@ -1,5 +1,7 @@
+var fs = require('fs');
 var https = require('https');
 var utils = require('../utils.js');
+var form = fs.readFileSync(__dirname+'/../views/form.html','utf8');
 
 module.exports = function(req, res) {
 
@@ -8,12 +10,16 @@ module.exports = function(req, res) {
         if (body.usrname === "rana" && body.usrpass == fixedpass) {
 
             res.writeHeader(302, {
-                'location': 'profile'
+                'location': 'profile',
+                'Set-Cookie': 'name=rana'
             });
             res.end();
 
         } else {
-            //console.log("ERRORRRRRR");
+
+            
+            res.end(form);
+
 
 
         }
